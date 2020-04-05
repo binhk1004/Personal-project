@@ -1,9 +1,9 @@
 temp = location.href.split("?");
 data = temp[1].split("=");
 search_result = data[1];
-console.log(search_result);
-alert("받아오기 성공");
+let result = decodeURIComponent(search_result);
+console.log(result);
 
-$("#test").text(search_result);
-
-alert("입력 성공");
+$(document).ready(function () {
+  $("#test").append(result);
+});
