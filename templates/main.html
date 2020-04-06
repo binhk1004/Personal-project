@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='index.css') }}"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='main.js') }}"
+      charset="utf-8"
+    ></script>
+    <script
+      type="text/javascript"
+      src="//dapi.kakao.com/v2/maps/sdk.js%3Fappkey=49b6d3b12d0fc1231bc1e134c5364c1f"
+    ></script>
+    <title>검색결과</title>
+  </head>
+  <body>
+    <div id="map">
+      <!-- 검색시 지도를 보여줄 부분 -->
+    </div>
+    <div class="mid">
+      <h1 id="test"></h1>
+      <!-- 검색시 관련 지역 가격 변동율을 보여줄 부분 -->
+    </div>
+    <div class="bottom">
+      <!-- 검색시 관련 뉴스를 보여줄 부분 -->
+    </div>
+  </body>
+</html>
