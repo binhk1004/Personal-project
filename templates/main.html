@@ -7,13 +7,24 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='main.css') }}"
     />
+    <link rel="stylesheet" href="{{ url_for('static', filename='map.css') }}" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script
       type="text/javascript"
       src="{{ url_for('static', filename='main.js') }}"
       charset="utf-8"
     ></script>
-     <script
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='map.js') }}"
+      charset="utf-8"
+    ></script>
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='graph.js') }}"
+      charset="utf-8"
+    ></script>
+    <script
       type="text/javascript"
       src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a87b7409110fed79877df6296882270c&libraries=services"
     ></script>

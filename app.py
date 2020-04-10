@@ -15,9 +15,9 @@ def main():
     return render_template('main.html')
 
 @app.route('/main.html', methods=['GET'])
-def result():
-    if request.method == 'GET':
-        return jsonify({'result':'success', 'msg': '데이터베이스 접속 성공'})
+def show_list():
+    local_result = list(db.Local_DB.find({}, {'_id': False}))
+    return jsonify({'result':'success', 'msg': '데이터베이스 접속 성공'})
 
 
 if __name__ == '__main__':
