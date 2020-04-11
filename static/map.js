@@ -1,3 +1,9 @@
+temp = location.href.split("?");
+data = temp[1].split("=");
+search_result = data[1];
+let juso = decodeURIComponent(search_result);
+console.log(juso);
+
 window.onload = function () {
   var mapContainer = document.getElementById("map"), // 지도를 표시할 div
     mapOption = {
