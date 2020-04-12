@@ -7,21 +7,11 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='main.css') }}"
     />
-    <link rel="stylesheet" href="{{ url_for('static', filename='map.css') }}" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js" charset="utf-8"></script>
     <script
       type="text/javascript"
       src="{{ url_for('static', filename='main.js') }}"
-      charset="utf-8"
-    ></script>
-    <script
-      type="text/javascript"
-      src="{{ url_for('static', filename='map.js') }}"
-      charset="utf-8"
-    ></script>
-    <script
-      type="text/javascript"
-      src="{{ url_for('static', filename='graph.js') }}"
       charset="utf-8"
     ></script>
     <script
@@ -35,7 +25,6 @@
       <!-- 검색시 지도를 보여줄 부분 -->
     </div>
     <div class="mid">
-      <h1 id="test"></h1>
       <!-- 검색시 관련 지역 가격 변동율을 보여줄 부분 -->
     </div>
     <div class="bottom">
