@@ -4,6 +4,7 @@
 }
 
 .chart {
+  display: inline-block;
   width: 25px;
   height: 75px;
   margin-left: 2px;

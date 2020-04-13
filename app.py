@@ -29,7 +29,11 @@ def find_list():
     for i in range(2015, 2020):
         result_list.append(change_year(i,local_num))
 
-    print(result_list)
+    graph_data = result_list
+    print(graph_data)
+    # print(graph_data['ldCodeNm'])
+    # print(graph_data['stdrYear'])
+    # print(graph_data['pblntfPclnd'])
     return jsonify({'result':'success', 'msg': result_list})
 
 
