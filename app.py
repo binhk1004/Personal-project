@@ -30,10 +30,18 @@ def find_list():
         result_list.append(change_year(i,local_num))
 
     graph_data = result_list
-    print(graph_data)
-    # print(graph_data['ldCodeNm'])
-    # print(graph_data['stdrYear'])
-    # print(graph_data['pblntfPclnd'])
+
+    # for index, value in enumerate(graph_data):
+    #     ...
+    #     print(index, value)
+
+    list1 = graph_data[0]
+    list2 = graph_data[1]
+    list3 = graph_data[2]
+    list4 = graph_data[3]
+    list5 = graph_data[4]
+
+
     return jsonify({'result':'success', 'msg': result_list})
 
 
@@ -41,7 +49,7 @@ def change_year(year,local_num):
     params = {
         'ServiceKey': unquote(
             'jFJq%2B%2BJgU2Mc8PrE5BxRZetsGiBrM%2BXDSku%2FUFCuzZ7j8FrslWnJ%2BR2xa7QbRStVG9HfSDU%2BmBQz3SCSfZmfXw%3D%3D'),
-        'ldCode': local_num, 'stdrYear': year, 'format': 'json', 'numOfRows': '10', 'pageNo': '1'
+        'ldCode': local_num, 'stdrYear': year, 'format': 'json', 'numOfRows': '1', 'pageNo': '1'
     }
     result = requests.get('http://apis.data.go.kr/1611000/nsdi/ReferLandPriceService/attr/getReferLandPriceAttr', params=params)
 
