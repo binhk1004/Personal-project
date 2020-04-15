@@ -75,3 +75,7 @@ d3.select("body")
   .style("height", function (d) {
     return d * 5 + "px";
   });
+
+
+console.log({{graph_data|tojson}})
+console.log({{fin_data|tojson}})
