@@ -1,5 +1,6 @@
 from flask import Flask, render_template, jsonify, request
 import requests
+import numpy as np
 from urllib.parse import unquote
 
 app = Flask(__name__)
@@ -50,7 +51,7 @@ def find_list():
     fin_data = row_data1['stdrYear'], row_data1['pblntfPclnd'], row_data2['stdrYear'], row_data2['pblntfPclnd'], row_data3['stdrYear'], row_data3['pblntfPclnd'], row_data4['stdrYear'], row_data4['pblntfPclnd'], row_data5['stdrYear'], row_data5['pblntfPclnd']
 
     return jsonify({'result':'success', 'msg': '접속성공'})
-    return render_template('main.html', graph_data=fin_data)
+    return render_template('main.html', fin_data=fin_data)
 
 
 
@@ -63,9 +64,6 @@ def change_year(year,local_num):
     result = requests.get('http://apis.data.go.kr/1611000/nsdi/ReferLandPriceService/attr/getReferLandPriceAttr', params=params)
 
     return result.json()
-
-
-
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)

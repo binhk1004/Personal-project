@@ -76,6 +76,7 @@ d3.select("body")
     return d * 5 + "px";
   });
 
+var test_data = {{fin_data|tojson}};
 
-console.log({{graph_data|tojson}})
-console.log({{fin_data|tojson}})
+console.log(test_data);
+// console.log({{fin_data}})
