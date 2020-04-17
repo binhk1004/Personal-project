@@ -28,6 +28,7 @@ def find_list():
 
     for i in range(2015, 2020):
         result_list.append(change_year(i,local_num))
+        
 
     graph_data = result_list
 
@@ -50,8 +51,9 @@ def find_list():
 
     fin_data = row_data1['stdrYear'], row_data1['pblntfPclnd'], row_data2['stdrYear'], row_data2['pblntfPclnd'], row_data3['stdrYear'], row_data3['pblntfPclnd'], row_data4['stdrYear'], row_data4['pblntfPclnd'], row_data5['stdrYear'], row_data5['pblntfPclnd']
 
-    return jsonify({'result':'success', 'msg': '접속성공'})
+    return jsonify({'result':'success', 'msg': fin_data})
     return render_template('main.html', fin_data=fin_data)
+
 
 
 
