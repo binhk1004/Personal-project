@@ -1,6 +1,5 @@
 from flask import Flask, render_template, jsonify, request
-import requests
-import numpy as np
+import requests, jinja2
 from urllib.parse import unquote
 
 app = Flask(__name__)
@@ -18,7 +17,7 @@ def index():
 def main():
     return render_template('main.html')
 
-@app.route('/main', methods=['POST'])
+@app.route('/main', methods=['POST','GET'])
 def find_list():
     NB_receive = request.form['local_NB']
     local_result = list(db.Local_DB.find({'법정동명':NB_receive}, {'_id': False}))
@@ -28,7 +27,7 @@ def find_list():
 
     for i in range(2015, 2020):
         result_list.append(change_year(i,local_num))
-        
+
 
     graph_data = result_list
 
@@ -49,12 +48,17 @@ def find_list():
     last_data4 = row_data4['ldCode'], row_data4['ldCodeNm'], row_data4['pblntfPclnd'], row_data4['stdrYear']
     last_data5 = row_data5['ldCode'], row_data5['ldCodeNm'], row_data5['pblntfPclnd'], row_data5['stdrYear']
 
+
+
     fin_data = row_data1['stdrYear'], row_data1['pblntfPclnd'], row_data2['stdrYear'], row_data2['pblntfPclnd'], row_data3['stdrYear'], row_data3['pblntfPclnd'], row_data4['stdrYear'], row_data4['pblntfPclnd'], row_data5['stdrYear'], row_data5['pblntfPclnd']
 
-    return jsonify({'result':'success', 'msg': fin_data})
-    return render_template('main.html', fin_data=fin_data)
+    import numpy as np
+    global graph_js
 
-
+    graph_js = list(fin_data)
+    print(graph_js)
+    return jsonify({'result':'success', 'msg': '접속성공'})
+    # return render_template('main.html', graph_js = graph_js)
 
 
 def change_year(year,local_num):
@@ -66,6 +70,7 @@ def change_year(year,local_num):
     result = requests.get('http://apis.data.go.kr/1611000/nsdi/ReferLandPriceService/attr/getReferLandPriceAttr', params=params)
 
     return result.json()
+
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)

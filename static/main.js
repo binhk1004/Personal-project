@@ -65,6 +65,7 @@ function find_result(keyword) {
 }
 
 var hello = [5, 10, 15, 20, 50, 60, 95, 80, 60];
+// var test_data = {{ graph_js }};
 
 d3.select("body")
   .select(".mid")
@@ -76,7 +77,8 @@ d3.select("body")
     return d * 5 + "px";
   });
 
-var test_data = {{fin_data}};
+// var test_data = {{ graph_html }};
 
-console.log(test_data);
-// // console.log({{fin_data}})
+// console.log(test_data);
+
+// alert({{ graph_js }})
