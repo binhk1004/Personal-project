@@ -1,4 +1,6 @@
 from flask import Flask, render_template, jsonify, request
+import json
+from bs4 import BeautifulSoup
 import requests, jinja2
 from urllib.parse import unquote
 
@@ -31,34 +33,34 @@ def find_list():
 
     graph_data = result_list
 
-    # for index, value in enumerate(graph_data):
-    #     ...
-    #     print(index, value)
-
     row_data1 = graph_data[0]['referLandPrices']['field'][0]
     row_data2 = graph_data[1]['referLandPrices']['field'][0]
     row_data3 = graph_data[2]['referLandPrices']['field'][0]
     row_data4 = graph_data[3]['referLandPrices']['field'][0]
     row_data5 = graph_data[4]['referLandPrices']['field'][0]
 
-
-    last_data1 = row_data1['ldCode'], row_data1['ldCodeNm'], row_data1['pblntfPclnd'], row_data1['stdrYear']
-    last_data2 = row_data2['ldCode'], row_data2['ldCodeNm'], row_data2['pblntfPclnd'], row_data2['stdrYear']
-    last_data3 = row_data3['ldCode'], row_data3['ldCodeNm'], row_data3['pblntfPclnd'], row_data3['stdrYear']
-    last_data4 = row_data4['ldCode'], row_data4['ldCodeNm'], row_data4['pblntfPclnd'], row_data4['stdrYear']
-    last_data5 = row_data5['ldCode'], row_data5['ldCodeNm'], row_data5['pblntfPclnd'], row_data5['stdrYear']
+    fin_data = row_data1['pblntfPclnd'], row_data2['pblntfPclnd'], row_data3['pblntfPclnd'], row_data4['pblntfPclnd'], row_data5['pblntfPclnd']
+    show_news(NB_receive)
+    return jsonify({'result':'success', 'msg': list(fin_data)})
 
 
 
-    fin_data = row_data1['stdrYear'], row_data1['pblntfPclnd'], row_data2['stdrYear'], row_data2['pblntfPclnd'], row_data3['stdrYear'], row_data3['pblntfPclnd'], row_data4['stdrYear'], row_data4['pblntfPclnd'], row_data5['stdrYear'], row_data5['pblntfPclnd']
+def show_news(NB_receive):
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683'}
 
-    import numpy as np
-    global graph_js
+    data = requests.get('https://search.naver.com/search.naver?where=news&sm=tab_jum&query=' + NB_receive + ' 부동산', headers=headers)
 
-    graph_js = list(fin_data)
-    print(graph_js)
-    return jsonify({'result':'success', 'msg': '접속성공'})
-    # return render_template('main.html', graph_js = graph_js)
+    soup = BeautifulSoup(data.text, 'html.parser')
+    news = soup.select('#main_pack > .news > .type01 > li')
+
+    news_list = []
+
+    for new in news:
+        link = new.select_one('dl > dt > a')
+        if not link == None:
+            news_list.append(link)
+            print(news_list)
 
 
 def change_year(year,local_num):

@@ -1,12 +1,18 @@
 #map {
   width: 500px;
   height: 400px;
+  margin: 0 auto;
 }
 
 .chart {
   display: inline-block;
-  width: 25px;
-  height: 75px;
-  margin-left: 2px;
-  background-color: coral;
+  width: 50px;
+  height: 150px;
+  margin-left: 30px;
+  background-color: blueviolet;
+}
+
+.mid {
+  padding-top: 50px;
+  text-align: center;
 }

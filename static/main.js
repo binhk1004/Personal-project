@@ -38,8 +38,8 @@ function drawMap(juso) {
 
       // 인포윈도우로 장소에 대한 설명을 표시합니다
       let infowindow = new kakao.maps.InfoWindow({
-        content:
-          '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>',
+        // content:
+        //   '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>',
       });
       infowindow.open(map);
 
@@ -57,28 +57,24 @@ function find_result(keyword) {
     success: function (response) {
       if (response["result"] == "success") {
         alert(response["msg"]);
+        for_data = response["msg"];
+        graph_data = [];
+        max_value = Math.max.apply(null, for_data);
+        for (let i = 0; i < for_data.length; i++) {
+          graph_data.push(((for_data[i] / max_value) * 100).toString());
+        }
+        d3.select(".mid")
+          .selectAll()
+          .data(graph_data)
+          .enter()
+          .append("div")
+          .attr("class", "chart")
+          .style("height", function (d) {
+            return d + "px";
+          });
       } else {
         alert(keyword);
       }
     },
   });
 }
-
-var hello = [5, 10, 15, 20, 50, 60, 95, 80, 60];
-// var test_data = {{ graph_js }};
-
-d3.select("body")
-  .select(".mid")
-  .data(hello)
-  .enter()
-  .append("div")
-  .attr("class", "chart")
-  .style("height", function (d) {
-    return d * 5 + "px";
-  });
-
-// var test_data = {{ graph_html }};
-
-// console.log(test_data);
-
-// alert({{ graph_js }})
