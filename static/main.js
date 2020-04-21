@@ -78,3 +78,20 @@ function find_result(keyword) {
     },
   });
 }
+
+function show_news(keyword) {
+  $.ajax({
+    type: "POST",
+    url: "/main",
+    data: { local_NB: keyword },
+    success: function (response) {
+      if (response["result"] == "wow") {
+        alert(response["data"]);
+        console.log(response["data"]);
+      }
+    },
+  });
+}
+
+var test = {{data|tojson}}
+console.log(test)

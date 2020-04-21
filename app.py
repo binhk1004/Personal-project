@@ -43,9 +43,8 @@ def find_list():
     show_news(NB_receive)
     return jsonify({'result':'success', 'msg': list(fin_data)})
 
-
-@app.route('/main', methods=['POST','GET'])
 def show_news(NB_receive):
+    NB_receive = request.form['local_NB']
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683'}
 
@@ -54,18 +53,22 @@ def show_news(NB_receive):
     soup = BeautifulSoup(data.text, 'html.parser')
     news = soup.select('#main_pack > .news > .type01 > li')
 
+
     news_list = {}
 
     for new in news:
-        link = new.select_one('dl > dt > a')
-        if not link == None:
-            news_list['news_show']=[link]
-            return render_template('/main.html', html_news = news_list)
-
-
-
-
-
+     link = new.select_one('dl > dt > a')
+     if not link == None:
+        news_list['news_show'] = [link]
+        html_news = news_list['news_show']
+        # print(html_news[0])
+        # print(html_news[0]['href'])
+        # print(html_news[0]['title'])
+        html_data1 = json.dumps(html_news[0]['href'])
+        html_data2 = json.dumps(html_news[0]['title'], ensure_ascii=False)
+        print(html_data1)
+        print(html_data2)
+        return jsonify({'result': 'wow', 'data': html_data1})
 
 def change_year(year,local_num):
     params = {
