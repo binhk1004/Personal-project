@@ -79,19 +79,20 @@ function find_result(keyword) {
   });
 }
 
-function show_news(keyword) {
+function show_news() {
   $.ajax({
     type: "POST",
     url: "/main",
     data: { local_NB: keyword },
     success: function (response) {
-      if (response["result"] == "wow") {
+      if (response["result"] == "success") {
         alert(response["data"]);
         console.log(response["data"]);
+      } else {
+        alert("실패");
       }
     },
   });
 }
-
-var test = {{data|tojson}}
-console.log(test)
+// var test = JSON.parse({{html_data1}});
+// alert(test);

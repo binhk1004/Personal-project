@@ -41,7 +41,7 @@ def find_list():
 
     fin_data = row_data1['pblntfPclnd'], row_data2['pblntfPclnd'], row_data3['pblntfPclnd'], row_data4['pblntfPclnd'], row_data5['pblntfPclnd']
     show_news(NB_receive)
-    return jsonify({'result':'success', 'msg': list(fin_data)})
+    return fin_data
 
 def show_news(NB_receive):
     NB_receive = request.form['local_NB']
@@ -57,18 +57,16 @@ def show_news(NB_receive):
     news_list = {}
 
     for new in news:
-     link = new.select_one('dl > dt > a')
-     if not link == None:
-        news_list['news_show'] = [link]
-        html_news = news_list['news_show']
-        # print(html_news[0])
-        # print(html_news[0]['href'])
-        # print(html_news[0]['title'])
-        html_data1 = json.dumps(html_news[0]['href'])
-        html_data2 = json.dumps(html_news[0]['title'], ensure_ascii=False)
-        print(html_data1)
-        print(html_data2)
-        return jsonify({'result': 'wow', 'data': html_data1})
+        link = new.select_one('dl > dt > a')
+        if not link == None:
+            news_list['news_show'] = [link]
+            html_news = news_list['news_show']
+            html_data1 = json.dumps(html_news[0]['href'])
+            html_data2 = json.dumps(html_news[0]['title'], ensure_ascii=False)
+            final_data = html_data1
+
+    return jsonify({'result': 'success', 'msg' : list(fin_data), 'data': final_data})
+
 
 def change_year(year,local_num):
     params = {
