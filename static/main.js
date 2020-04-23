@@ -57,7 +57,11 @@ function find_result(keyword) {
     success: function (response) {
       if (response["result"] == "success") {
         alert(response["msg"]);
+        alert(response["data"]);
+        console.log(response["data"]);
+        for_news = response["data"];
         for_data = response["msg"];
+        show_news();
         graph_data = [];
         max_value = Math.max.apply(null, for_data);
         for (let i = 0; i < for_data.length; i++) {
@@ -80,19 +84,6 @@ function find_result(keyword) {
 }
 
 function show_news() {
-  $.ajax({
-    type: "POST",
-    url: "/main",
-    data: { local_NB: keyword },
-    success: function (response) {
-      if (response["result"] == "success") {
-        alert(response["data"]);
-        console.log(response["data"]);
-      } else {
-        alert("실패");
-      }
-    },
-  });
+  let temp_html = "<div>" + for_news + "</div>";
+  $(".bottom").append(temp_html);
 }
-// var test = JSON.parse({{html_data1}});
-// alert(test);

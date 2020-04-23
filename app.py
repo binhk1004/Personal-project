@@ -41,10 +41,10 @@ def find_list():
 
     fin_data = row_data1['pblntfPclnd'], row_data2['pblntfPclnd'], row_data3['pblntfPclnd'], row_data4['pblntfPclnd'], row_data5['pblntfPclnd']
     show_news(NB_receive)
-    return fin_data
+    news_data = show_news(NB_receive)
+    return jsonify({'result': 'success', 'msg': list(fin_data), 'data' : news_data})
 
 def show_news(NB_receive):
-    NB_receive = request.form['local_NB']
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683'}
 
@@ -61,11 +61,15 @@ def show_news(NB_receive):
         if not link == None:
             news_list['news_show'] = [link]
             html_news = news_list['news_show']
-            html_data1 = json.dumps(html_news[0]['href'])
-            html_data2 = json.dumps(html_news[0]['title'], ensure_ascii=False)
-            final_data = html_data1
 
-    return jsonify({'result': 'success', 'msg' : list(fin_data), 'data': final_data})
+            html_data1 = html_news[0]['href']
+            html_data2 = html_news[0]['title']
+
+            final_data = []
+            final_data.append(html_data2)
+            final_data.append(html_data1)
+
+            return final_data
 
 
 def change_year(year,local_num):
