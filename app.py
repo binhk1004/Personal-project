@@ -40,7 +40,6 @@ def find_list():
     row_data5 = graph_data[4]['referLandPrices']['field'][0]
 
     fin_data = row_data1['pblntfPclnd'], row_data2['pblntfPclnd'], row_data3['pblntfPclnd'], row_data4['pblntfPclnd'], row_data5['pblntfPclnd']
-    show_news(NB_receive)
     news_data = show_news(NB_receive)
     return jsonify({'result': 'success', 'msg': list(fin_data), 'data' : news_data})
 
@@ -54,7 +53,9 @@ def show_news(NB_receive):
     news = soup.select('#main_pack > .news > .type01 > li')
 
 
+
     news_list = {}
+    n_list=[]
 
     for new in news:
         link = new.select_one('dl > dt > a')
@@ -65,11 +66,10 @@ def show_news(NB_receive):
             html_data1 = html_news[0]['href']
             html_data2 = html_news[0]['title']
 
-            final_data = []
-            final_data.append(html_data2)
-            final_data.append(html_data1)
 
-            return final_data
+            n_list.append({'title':html_data2, 'href':html_data1})
+    return n_list
+
 
 
 def change_year(year,local_num):

@@ -56,12 +56,19 @@ function find_result(keyword) {
     data: { local_NB: keyword },
     success: function (response) {
       if (response["result"] == "success") {
-        alert(response["msg"]);
-        alert(response["data"]);
-        console.log(response["data"]);
+        // alert(response["msg"]);
+        // alert(response["data"]);
+        // console.log(response["data"]);
         for_news = response["data"];
+        // console.log(for_news);
+
+        for (let i = 0; i < for_news.length; i++) {
+          href = for_news[i]["href"];
+          title = for_news[i]["title"];
+          show_news(title, href);
+        }
         for_data = response["msg"];
-        show_news();
+
         graph_data = [];
         max_value = Math.max.apply(null, for_data);
         for (let i = 0; i < for_data.length; i++) {
@@ -83,7 +90,8 @@ function find_result(keyword) {
   });
 }
 
-function show_news() {
-  let temp_html = "<div>" + for_news + "</div>";
+function show_news(title, href) {
+  let temp_html =
+    "<div><a href='" + href + "' target='_blank' >" + title + "</a></div>";
   $(".bottom").append(temp_html);
 }
