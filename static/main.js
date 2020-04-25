@@ -92,6 +92,10 @@ function find_result(keyword) {
 
 function show_news(title, href) {
   let temp_html =
-    "<div><a href='" + href + "' target='_blank' >" + title + "</a></div>";
+    "<div class='news'><a href='" +
+    href +
+    "' target='_blank' >" +
+    title +
+    "</a></div>";
   $(".bottom").append(temp_html);
 }
