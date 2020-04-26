@@ -1,3 +1,7 @@
+.top {
+  text-align: center;
+}
+
 #map {
   width: 500px;
   height: 400px;
@@ -5,6 +9,7 @@
 }
 
 .real_map {
+  padding-bottom: 10px;
   border-bottom: 3px solid #f7f7f7;
 }
 
@@ -17,17 +22,38 @@
 }
 
 .mid {
-  padding-top: 50px;
+  border-top: 3px solid #f7f7f7;
+  padding-top: 30px;
   padding-bottom: 25px;
   text-align: center;
   border-bottom: 3px solid #f7f7f7;
 }
 
-.bottom {
-  padding-top: 50px;
+.bottom-top {
   text-align: center;
+  padding-right: 20%;
+}
+
+.bottom {
+  padding-top: 20px;
+  padding-left: 30%;
+  justify-content: center;
 }
 
 .news {
   padding-bottom: 15px;
 }
+
+.image {
+  vertical-align: middle;
+  padding-right: 15px;
+  margin: 0 auto;
+}
+.text {
+  padding-left: 22%;
+  padding-bottom: 20px;
+}
+/* .link {
+  justify-content: center;
+  text-align: center;
+} */

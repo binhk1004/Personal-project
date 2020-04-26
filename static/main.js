@@ -15,7 +15,7 @@ function drawMap(juso) {
   let mapContainer = document.getElementById("map"), // 지도를 표시할 div
     mapOption = {
       center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-      level: 7, // 지도의 확대 레벨
+      level: 4, // 지도의 확대 레벨
     };
 
   // 지도를 생성합니다
@@ -60,12 +60,12 @@ function find_result(keyword) {
         // alert(response["data"]);
         // console.log(response["data"]);
         for_news = response["data"];
-        // console.log(for_news);
 
         for (let i = 0; i < for_news.length; i++) {
           href = for_news[i]["href"];
           title = for_news[i]["title"];
-          show_news(title, href);
+          image = for_news[i]["image"];
+          show_news(title, href, image);
         }
         for_data = response["msg"];
 
@@ -74,6 +74,7 @@ function find_result(keyword) {
         for (let i = 0; i < for_data.length; i++) {
           graph_data.push(((for_data[i] / max_value) * 100).toString());
         }
+
         d3.select(".mid")
           .selectAll()
           .data(graph_data)
@@ -90,12 +91,28 @@ function find_result(keyword) {
   });
 }
 
-function show_news(title, href) {
-  let temp_html =
-    "<div class='news'><a href='" +
-    href +
-    "' target='_blank' >" +
-    title +
-    "</a></div>";
+function show_news(title, href, image) {
+  let temp_html = "";
+
+  if (image == null) {
+    temp_html =
+      "<div class='news'> " +
+      "<a href='" +
+      href +
+      "' target='_blank' >" +
+      title +
+      "</a></div>";
+  } else {
+    temp_html =
+      "<div class='news'> " +
+      "<img class ='image' src=" +
+      image +
+      " />" +
+      "<a class = 'link' href='" +
+      href +
+      "' target='_blank' >" +
+      title +
+      "</a></div>";
+  }
   $(".bottom").append(temp_html);
 }

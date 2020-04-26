@@ -59,15 +59,24 @@ def show_news(NB_receive):
 
     for new in news:
         link = new.select_one('dl > dt > a')
+
         if not link == None:
             news_list['news_show'] = [link]
             html_news = news_list['news_show']
 
             html_data1 = html_news[0]['href']
+
             html_data2 = html_news[0]['title']
 
+            image = new.select_one('.thumb > a > img')
+            if not image == None:
+                news_list['news_img'] = [image]
+                html_image = news_list['news_img']
+                html_img = html_image[0]['src']
+            else:
+                html_img = None
 
-            n_list.append({'title':html_data2, 'href':html_data1})
+            n_list.append({'title': html_data2, 'href': html_data1, 'image': html_img})
     return n_list
 
 
