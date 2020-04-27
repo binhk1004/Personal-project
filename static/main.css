@@ -10,7 +10,6 @@
 
 .real_map {
   padding-bottom: 10px;
-  border-bottom: 3px solid #f7f7f7;
 }
 
 .chart {
@@ -18,26 +17,21 @@
   width: 50px;
   height: 150px;
   margin-left: 30px;
-  background-color: blueviolet;
+  background-color: cornflowerblue;
 }
 
 .mid {
-  border-top: 3px solid #f7f7f7;
   padding-top: 30px;
   padding-bottom: 25px;
   text-align: center;
   border-bottom: 3px solid #f7f7f7;
 }
 
-.bottom-top {
-  text-align: center;
-  padding-right: 20%;
-}
-
 .bottom {
   padding-top: 20px;
-  padding-left: 30%;
+  text-align: center;
   justify-content: center;
+
 }
 
 .news {
@@ -47,13 +41,4 @@
 .image {
   vertical-align: middle;
   padding-right: 15px;
-  margin: 0 auto;
 }
-.text {
-  padding-left: 22%;
-  padding-bottom: 20px;
-}
-/* .link {
-  justify-content: center;
-  text-align: center;
-} */
