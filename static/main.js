@@ -68,24 +68,50 @@ function find_result(keyword) {
           show_news(title, href, image);
         }
         for_data = response["msg"];
-
-        graph_data = [];
-        max_value = Math.max.apply(null, for_data);
-        for (let i = 0; i < for_data.length; i++) {
-          graph_data.push(((for_data[i] / max_value) * 100).toString());
-        }
-
-        d3.select(".mid")
-          .selectAll()
-          .data(graph_data)
-          .enter()
-          .append("div")
-          .attr("class", "chart")
-          .style("height", function (d) {
-            return d + "px";
-          });
-      } else {
-        alert(keyword);
+        var ctx = document.getElementById("myChart");
+        var myChart = new Chart(ctx, {
+          type: "line",
+          data: {
+            labels: ["2015", "2016", "2017", "2018", "2019"],
+            fill: false,
+            datasets: [
+              {
+                label: "# of Votes",
+                data: for_data,
+                backgroundColor: [
+                  "rgba(255, 99, 132, 0.2)",
+                  "rgba(54, 162, 235, 0.2)",
+                  "rgba(255, 206, 86, 0.2)",
+                  "rgba(75, 192, 192, 0.2)",
+                  "rgba(153, 102, 255, 0.2)",
+                  "rgba(255, 159, 64, 0.2)",
+                ],
+                borderColor: [
+                  "rgba(255,99,132,1)",
+                  "rgba(54, 162, 235, 1)",
+                  "rgba(255, 206, 86, 1)",
+                  "rgba(75, 192, 192, 1)",
+                  "rgba(153, 102, 255, 1)",
+                  "rgba(255, 159, 64, 1)",
+                ],
+                borderWidth: 1,
+              },
+            ],
+          },
+          options: {
+            maintainAspectRatio: true,
+            fill: false,
+            scales: {
+              yAxes: [
+                {
+                  ticks: {
+                    beginAtZero: false,
+                  },
+                },
+              ],
+            },
+          },
+        });
       }
     },
   });
