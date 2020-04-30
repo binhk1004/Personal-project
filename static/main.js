@@ -118,27 +118,175 @@ function find_result(keyword) {
 }
 
 function show_news(title, href, image) {
-  let temp_html = "";
+  $.ajax({
+    type: "GET",
+    url: "/main",
+    data: { title, href, image },
+    success: function (response) {
+      if (response["result"] == "success") {
+        // alert(response["msg"]);
+        // alert(response["data"]);
+        // console.log(response["data"]);
+        for_news = response["data"];
 
-  if (image == null) {
-    temp_html =
-      "<div class='news'> " +
-      "<a href='" +
-      href +
-      "' target='_blank' >" +
-      title +
-      "</a></div>";
-  } else {
-    temp_html =
-      "<div class='news'> " +
-      "<img class ='image' src=" +
-      image +
-      " />" +
-      "<a class = 'link' href='" +
-      href +
-      "' target='_blank' >" +
-      title +
-      "</a></div>";
-  }
-  $(".bottom").append(temp_html);
+        for (let i = 0; i < for_news.length; i++) {
+          href = for_news[i]["href"];
+          title = for_news[i]["title"];
+          image = for_news[i]["image"];
+          make_news(title, href, image);
+        }
+        function make_news(title, href, image) {
+          card_deck =
+            "<div class='card-deck'>" +
+            "<div class='card'>" +
+            "<img src=" +
+            image +
+            ">" +
+            "<div class='card-body'>" +
+            "<h5 class='card-title'>" +
+            title +
+            "</h5>" +
+            "<p class='card-text'>" +
+            "</p>" +
+            "<p class=" +
+            href +
+            ">" +
+            "<small class='text-muted'>" +
+            "</small>" +
+            "</p>" +
+            "</div>" +
+            "</div>" +
+            "</div>";
+          $(".bottom").append(card_deck);
+        }
+      }
+    },
+  });
 }
+
+// let card_deck = "";
+
+// if (image == null) {
+//   card_deck =
+//     "<div class='card-deck'>" +
+//     "<div class='card'>" +
+//     "<img src=" +
+//     "class='card-img-top' alt='...'>" +
+//     "<div class='card-body'>" +
+//     "<h5 class='card-title'>" +
+//     title +
+//     "</h5>" +
+//     "<p class='card-text'>" +
+//     "</p>";
+//   "<p class=" +
+//     href +
+//     ">" +
+//     "<small class='text-muted'>" +
+//     "</small>" +
+//     "</p>" +
+//     "</div>";
+// } else {
+//   card_deck =
+//     "<div class='card-deck'>" +
+//     "<div class='card'>" +
+//     "<img src=" +
+//     image +
+//     "class='card-img-top' alt='...'>" +
+//     "<div class='card-body'>" +
+//     "<h5 class='card-title'>" +
+//     title +
+//     "</h5>" +
+//     "<p class='card-text'>" +
+//     "</p>";
+//   "<p class=" +
+//     href +
+//     ">" +
+//     "<small class='text-muted'>" +
+//     "</small>" +
+//     "</p>" +
+//     "</div>";
+// }
+
+// card_deck =
+//   "<div class='card-deck'>" +
+//   "<div class='card'>" +
+//   "<img src=" +
+//   image +
+//   "class='card-img-top' alt='...'>" +
+//   "<div class='card-body'>" +
+//   "<h5 class='card-title'>" +
+//   title +
+//   "</h5>" +
+//   "<p class='card-text'>" +
+//   "</p>";
+// "<p class=" +
+//   href +
+//   ">" +
+//   "<small class='text-muted'>" +
+//   "</small>" +
+//   "</p>" +
+//   "</div>";
+
+// let temp_html = "";
+
+// if (image == null) {
+//   temp_html =
+//     "<div class='news'> " +
+//     "<a href='" +
+//     href +
+//     "' target='_blank' >" +
+//     title +
+//     "</a></div>";
+// } else {
+//   temp_html =
+//     "<div class='news'> " +
+//     "<img class ='image' src=" +
+//     image +
+//     " />" +
+//     "<a class = 'link' href='" +
+//     href +
+//     "' target='_blank' >" +
+//     title +
+//     "</a></div>";
+// }
+
+// if (image == null) {
+//   card_deck =
+//     "<div class='card-deck'>" +
+//     "<div class='card'>" +
+//     "<img src=" +
+//     "class='card-img-top' alt='...'>" +
+//     "<div class='card-body'>" +
+//     "<h5 class='card-title'>" +
+//     title +
+//     "</h5>" +
+//     "<p class='card-text'>" +
+//     "</p>";
+//   "<p class=" +
+//     href +
+//     ">" +
+//     "<small class='text-muted'>" +
+//     "</small>" +
+//     "</p>" +
+//     "</div>";
+// } else {
+//   card_deck =
+//     "<div class='card-deck'>" +
+//     "<div class='card'>" +
+//     "<img src=" +
+//     image +
+//     "class='card-img-top' alt='...'>" +
+//     "<div class='card-body'>" +
+//     "<h5 class='card-title'>" +
+//     title +
+//     "</h5>" +
+//     "<p class='card-text'>" +
+//     "</p>";
+//   "<p class=" +
+//     href +
+//     ">" +
+//     "<small class='text-muted'>" +
+//     "</small>" +
+//     "</p>" +
+//     "</div>";
+// }

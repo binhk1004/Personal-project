@@ -3,13 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css"
+    />
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='main.css') }}"
     />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-    <!-- <script src="https://d3js.org/d3.v5.min.js" charset="utf-8"></script> -->
     <script
       type="text/javascript"
       src="{{ url_for('static', filename='main.js') }}"
@@ -39,6 +47,18 @@
     </div>
     <div class="bottom">
       <h3 class="text">뉴스 모아보기</h3>
+      <div class="card-deck">
+        <div class="card">
+          <img src="" />
+          <div class="card-body">
+            <h5 class="card-title"></h5>
+            <p class="card-text"></p>
+            <p class="">
+              <small class="text-muted"></small>
+            </p>
+          </div>
+        </div>
+      </div>
       <!-- 검색시 관련 뉴스를 보여줄 부분 -->
     </div>
   </body>
