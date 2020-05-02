@@ -56,7 +56,7 @@ function find_result(keyword) {
     data: { local_NB: keyword },
     success: function (response) {
       if (response["result"] == "success") {
-        for_news = response["data"];
+        for_news = response["news"];
 
         for (let i = 0; i < for_news.length; i++) {
           href = for_news[i]["href"];
@@ -66,6 +66,7 @@ function find_result(keyword) {
         }
 
         for_data = response["msg"];
+
         var ctx = document.getElementById("myChart");
         var myChart = new Chart(ctx, {
           type: "line",
@@ -97,7 +98,6 @@ function find_result(keyword) {
           },
           options: {
             maintainAspectRatio: true,
-            fill: false,
             scales: {
               yAxes: [
                 {
@@ -119,53 +119,31 @@ function show_news(title, href, image) {
 
   if (image == null) {
     temp_html =
-      "<div class='card-deck'>" +
-      "<div class='card'>" +
+      "<div class='card' style='width: 10rem;'>" +
       "<img src=" +
       ">" +
       "<div class='card-body'>" +
-      "<h5 class='card-title'> " +
+      "<p class='card-text'>" +
       "<a href=" +
       href +
       "' target='_blank' >" +
       title +
       "</a> " +
-      "</h5>" +
-      "<p class='card-text'>" +
-      "</p>" +
-      "<p class=" +
-      href +
-      ">" +
-      "<small class='text-muted'>" +
-      "</small>" +
-      "</p>" +
-      "</div>" +
       "</div>" +
       "</div>";
   } else {
     temp_html =
-      "<div class='card-deck'>" +
-      "<div class='card'>" +
+      "<div class='card' style='width: 10rem;'>" +
       "<img src=" +
       image +
-      ">" +
+      " class=news_image>" +
       "<div class='card-body'>" +
-      "<h5 class='card-title'> " +
+      "<p class='card-text'>" +
       "<a href=" +
       href +
       "' target='_blank' >" +
       title +
       "</a> " +
-      "</h5>" +
-      "<p class='card-text'>" +
-      "</p>" +
-      "<p class=" +
-      href +
-      ">" +
-      "<small class='text-muted'>" +
-      "</small>" +
-      "</p>" +
-      "</div>" +
       "</div>" +
       "</div>";
   }

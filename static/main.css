@@ -1,5 +1,6 @@
 .top {
   text-align: center;
+  justify-content: center;
 }
 
 #map {
@@ -22,15 +23,24 @@
 
 .bottom {
   padding-top: 20px;
+  margin: 0 auto;
   text-align: center;
   justify-content: center;
+}
+
+.card {
+  display: inline-flex;
+  margin: 10px;
 }
 
 .news {
   padding-bottom: 15px;
 }
 
-.image {
-  vertical-align: middle;
-  padding-right: 15px;
+.news_image {
+  margin: 0 auto;
+  width: auto;
+  height: auto;
+  max-width: 150px;
+  max-height: 100px;
 }

@@ -41,7 +41,7 @@ def find_list():
 
     fin_data = row_data1['pblntfPclnd'], row_data2['pblntfPclnd'], row_data3['pblntfPclnd'], row_data4['pblntfPclnd'], row_data5['pblntfPclnd']
     news_data = show_news(NB_receive)
-    return jsonify({'result': 'success', 'msg': list(fin_data), 'data' : news_data})
+    return jsonify({'result': 'success', 'msg': list(fin_data), 'news' : news_data})
 
 def show_news(NB_receive):
     headers = {
